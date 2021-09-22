@@ -14,8 +14,7 @@ time.sleep(1)
 def custom_callback(client, userdata, message):
     #the third argument is 'message' here unlike 'msg' in on_message 
     m = str(message.payload, "utf-8")
-    print("custom_callback: " + message.topic + " " + "\"" + 
-        m + "\"")
+    print("custom_callback: " + message.topic + " " + "\"" + m + "\"")
     if m == "LED_ON":
         digitalWrite(led,1)		# Send HIGH to switch on LED
         print ("LED ON!")
@@ -28,6 +27,7 @@ def on_connect(client, userdata, flags, rc):
 
     #subscribe to topics of interest here
     client.subscribe("MONIPET/led")
+    client.message_callback_add("MONIPET/led", custom_callback)
 # #Default message callback. Please use custom callbacks.
 # def on_message(client, userdata, msg):
 #     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
