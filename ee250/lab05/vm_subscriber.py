@@ -14,8 +14,8 @@ def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
     
     #subscribe to the ultrasonic ranger topic here
-    client.subscribe("MONIPET/led")
-    client.message_callback_add("MONIPET/led", custom_callback)
+    client.subscribe("MONIPET/ultrasonicRanger")
+    client.message_callback_add("MONIPET/ultrasonicRanger", custom_callback)
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
 

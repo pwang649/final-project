@@ -6,8 +6,10 @@ import paho.mqtt.client as mqtt
 import time
 from grovepi import *
 
-# Connect the Grove LED to digital port D4
+grovepi.set_bus("RPI_1")
+# Connect the Grove LED to digital port D4, Ultrasonic ranger to port D3
 led = 4
+ultrasonic_ranger = 3
 
 pinMode(led,"OUTPUT")
 time.sleep(1)
@@ -41,6 +43,7 @@ if __name__ == '__main__':
     client.loop_start()
 
     while True:
+        client.publish("MONIPET/ultrasonicRanger", grovepi.ultrasonicRead(ultrasonic_ranger))
         time.sleep(1)
             
 
