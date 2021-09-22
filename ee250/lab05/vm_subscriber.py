@@ -11,7 +11,7 @@ def custom_callback(client, userdata, message):
         str(message.payload, "utf-8") + "\"")
 def button_callback(client, userdata, message):
     m = str(message.payload, "utf-8")
-    if m == "pressed""
+    if m == "pressed":
         print("Button pressed!")
 
 def on_connect(client, userdata, flags, rc):
@@ -21,7 +21,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("MONIPET/ultrasonicRanger")
     client.subscribe("MONIPET/button")
     client.message_callback_add("MONIPET/ultrasonicRanger", custom_callback)
-    client.message_callback_add("MONIPET/ultrasonicRanger", button_callback)
+    client.message_callback_add("MONIPET/button", button_callback)
 #Default message callback. Please use custom callbacks.
 #
 if __name__ == '__main__':

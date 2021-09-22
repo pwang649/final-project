@@ -45,7 +45,6 @@ if __name__ == '__main__':
     client.loop_start()
 
     while True:
-        print(digitalRead(button))
         if digitalRead(button) == 1:
             client.publish("MONIPET/button", "pressed")
         client.publish("MONIPET/ultrasonicRanger", ultrasonicRead(ultrasonic_ranger))
