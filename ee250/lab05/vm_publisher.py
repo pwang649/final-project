@@ -10,11 +10,6 @@ client = mqtt.Client()
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
-    #subscribe to topics of interest here
-
-def custom_callback(client, userdata, message):
-    #the third argument is 'message' here unlike 'msg' in on_message 
-    print("custom_callback: " + message.topic + " " + "\"" + str(message.payload, "utf-8") + "\"")
 
 def on_press(key):
     try: 

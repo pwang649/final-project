@@ -8,11 +8,11 @@ import time
 def custom_callback(client, userdata, message):
     # prints the ultrasonic ranger value 
     print("VM: " + str(message.payload, "utf-8") + " cm")
-
+   
 def button_callback(client, userdata, message):
     m = str(message.payload, "utf-8")
     print(str(m))
-
+    
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
     
