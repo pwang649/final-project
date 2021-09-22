@@ -6,6 +6,7 @@ Run rpi_pub_and_sub.py on your Raspberry Pi."""
 import paho.mqtt.client as mqtt
 import time
 from grovepi import *
+from grove_rgb_lcd import *
 
 set_bus("RPI_1")
 # Connect the Grove LED to digital port D4, Ultrasonic ranger to port D3, button to D2
@@ -54,7 +55,7 @@ if __name__ == '__main__':
     while True:
         if digitalRead(button) == 1:
             client.publish("MONIPET/button", "Button pressed!")
-            
+
         client.publish("MONIPET/ultrasonicRanger", ultrasonicRead(ultrasonic_ranger))
         time.sleep(1)
             
