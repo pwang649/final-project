@@ -52,14 +52,7 @@ if __name__ == '__main__':
     client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
     client.loop_start()
 
-    while True:
-        if digitalRead(button) == 1:
-            client.publish("MONIPET/button", "Button pressed!")
-
-        client.publish("MONIPET/ultrasonicRanger", ultrasonicRead(ultrasonic_ranger))
-        time.sleep(1)
-            
-
+    while True:e
         # if the button is pressed
         if digitalRead(button) == 1:
             client.publish("MONIPET/button", "Button pressed!") # publish message
