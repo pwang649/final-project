@@ -1,8 +1,3 @@
-"""EE 250L Lab 04 Starter Code
-
-Run rpi_pub_and_sub.py on your Raspberry Pi."""
-
-
 import paho.mqtt.client as mqtt
 import time
 from grovepi import *
@@ -52,11 +47,11 @@ if __name__ == '__main__':
     client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
     client.loop_start()
 
-    while True:e
+    while True:
         # if the button is pressed
         if digitalRead(button) == 1:
             client.publish("MONIPET/button", "Button pressed!") # publish message
         
         # publish the ultrasonic reading
-        client.publish("MONIPET/ultrasonicRanger", ultrasonicRead(ultrasonic_ranger))
+        client.publish("MONIPET/soundSensor", ultrasonicRead(ultrasonic_ranger))
         time.sleep(1)
