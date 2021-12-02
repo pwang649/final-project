@@ -4,14 +4,17 @@ from grovepi import *
 from grove_rgb_lcd import *
 
 set_bus("RPI_1")
-# Connect the Grove LED to digital port D4, Ultrasonic ranger to port D3, button to D2
-led = 4
-ultrasonic_ranger = 3
-button = 2
+# Connect the Grove LED to digital port D2, D3, and D4; Sound sensor to port A0
+ledG = 2
+ledB = 3
+ledR = 4
+soundSensor = 0
 
 # set input and outputs
-pinMode(button,"INPUT")
-pinMode(led,"OUTPUT")
+pinMode(soundSensor,"INPUT")
+pinMode(ledG,"OUTPUT")
+pinMode(ledB,"OUTPUT")
+pinMode(ledR,"OUTPUT")
 
 time.sleep(1)
 
@@ -48,10 +51,10 @@ if __name__ == '__main__':
     client.loop_start()
 
     while True:
-        # if the button is pressed
-        if digitalRead(button) == 1:
-            client.publish("MONIPET/button", "Button pressed!") # publish message
-        
+        digitalWrite(ledR,1)
+        digitalWrite(ledG,1)
+        digitalWrite(ledB,1)
+        print(analogRead(soundSensor))
         # publish the ultrasonic reading
         client.publish("MONIPET/soundSensor", ultrasonicRead(ultrasonic_ranger))
         time.sleep(1)
