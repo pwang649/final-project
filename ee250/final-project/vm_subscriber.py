@@ -17,10 +17,8 @@ def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
     
     #subscribe to interested topics here
-    client.subscribe("MONIPET/ultrasonicRanger")
-    client.subscribe("MONIPET/button")
-    client.message_callback_add("MONIPET/ultrasonicRanger", custom_callback)
-    client.message_callback_add("MONIPET/button", button_callback)
+    client.subscribe("MONIPET/soundSensor")
+    client.message_callback_add("MONIPET/soundSensor", custom_callback)
 
 
 if __name__ == '__main__':
