@@ -22,6 +22,7 @@ manual_control_mode = False
 
 def ledR_callback(client, userdata, message):
     # record publisher's message
+    global manual_control_mode
     if manual_control_mode:
         m = str(message.payload, "utf-8")
         print("ledR_callback: " + message.topic + " " + "\"" + m + "\"")
@@ -34,6 +35,7 @@ def ledR_callback(client, userdata, message):
 
 def ledG_callback(client, userdata, message):
     # record publisher's message
+    global manual_control_mode
     if manual_control_mode:
         m = str(message.payload, "utf-8")
         print("ledG_callback: " + message.topic + " " + "\"" + m + "\"")
@@ -46,6 +48,7 @@ def ledG_callback(client, userdata, message):
 
 def ledB_callback(client, userdata, message):
     # record publisher's message
+    global manual_control_mode
     if manual_control_mode:
         m = str(message.payload, "utf-8")
         print("ledB_callback: " + message.topic + " " + "\"" + m + "\"")
@@ -57,6 +60,7 @@ def ledB_callback(client, userdata, message):
             print ("LED OFF!")
 
 def manual_mode_callback(client, userdata, message):
+    global manual_control_mode
     m = str(message.payload, "utf-8")
     print("manual_mode_callback: " + message.topic + " " + "\"" + m + "\"")
     if m == "true":

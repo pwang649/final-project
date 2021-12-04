@@ -8,11 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    client = mqtt.Client()
-    #client.on_message = on_message
-    client.on_connect = on_connect
-    client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
-    client.loop_start()
+
     return render_template("index.html")
     while True:
         #print("delete this line")
@@ -25,6 +21,7 @@ def submit():
         r = request.form["red"]
         b = request.form["blue"]
         g = request.form["green"]
+        client.publish("MONIPET/manual", "true")
         client.publish("MONIPET/ledR", r)
         client.publish("MONIPET/ledG", g)
         client.publish("MONIPET/ledB", b)
@@ -49,5 +46,10 @@ def on_connect(client, userdata, flags, rc):
 
 
 if __name__ == "__main__":
+    client = mqtt.Client()
+    #client.on_message = on_message
+    client.on_connect = on_connect
+    client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
+    client.loop_start()
     app.secret_key = os.urandom(12)
     app.run(debug=True)
