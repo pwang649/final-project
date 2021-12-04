@@ -2,6 +2,7 @@ import paho.mqtt.client as mqtt
 import time
 from grovepi import *
 from grove_rgb_lcd import *
+from collections import deque 
 
 set_bus("RPI_1")
 # Connect the Grove LED to digital port D2, D3, and D4; Sound sensor to port A0
@@ -93,17 +94,23 @@ if __name__ == '__main__':
     digitalWrite(ledR,1)
     digitalWrite(ledG,1)
     digitalWrite(ledB,1)
+    # Use a moving average filter if L=5
+    # Initializa a deque
+    deck = deque([0, 0, 0, 0, 0])  
     while True:
         soundValue = analogRead(soundSensor)
-        print(soundValue)
+        deck.popLeft()
+        deck.append(soundValue)
+        avg = sum(deck)/5
+        print(avg)
         # publish the ultrasonic reading
-        client.publish("MONIPET/soundSensor", soundValue)
+        client.publish("MONIPET/soundSensor", avg)
         if not manual_control_mode:
-            if soundValue > 300:
+            if soundValue > 500:
                 digitalWrite(ledR,1)
                 digitalWrite(ledG,0)
                 digitalWrite(ledB,0)
-            elif soundValue > 150:
+            elif soundValue > 400:
                 digitalWrite(ledR,0)
                 digitalWrite(ledG,0)
                 digitalWrite(ledB,1)
