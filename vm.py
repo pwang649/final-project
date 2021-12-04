@@ -1,5 +1,4 @@
 import paho.mqtt.client as mqtt
-import time
 import os
 from flask import Flask, redirect, render_template, request, session, url_for
 
@@ -48,4 +47,4 @@ if __name__ == "__main__":
     client.loop_start()
     soundValue = 0
     app.secret_key = os.urandom(12)
-    app.run(debug=True)
+    app.run()

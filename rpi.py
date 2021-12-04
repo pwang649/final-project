@@ -1,7 +1,6 @@
 import paho.mqtt.client as mqtt
 import time
 from grovepi import *
-from grove_rgb_lcd import *
 from collections import deque
 
 # Connect the Grove LED to digital port D2, D3, and D4; Sound sensor to port A0
@@ -91,7 +90,7 @@ if __name__ == '__main__':
     digitalWrite(ledR,1)
     digitalWrite(ledG,1)
     digitalWrite(ledB,1)
-    # Use a moving average filter if L=5
+    # Use a moving average filter of L=5
     # Initializa a deque
     deck = deque([0, 0, 0, 0, 0])  
     while True:
