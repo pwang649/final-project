@@ -4,7 +4,6 @@ from grovepi import *
 from grove_rgb_lcd import *
 from collections import deque 
 
-set_bus("RPI_1")
 # Connect the Grove LED to digital port D2, D3, and D4; Sound sensor to port A0
 ledG = 2
 ledB = 3
@@ -99,7 +98,7 @@ if __name__ == '__main__':
     deck = deque([0, 0, 0, 0, 0])  
     while True:
         soundValue = analogRead(soundSensor)
-        deck.popLeft()
+        deck.popleft()
         deck.append(soundValue)
         avg = sum(deck)/5
         print(avg)
@@ -118,4 +117,4 @@ if __name__ == '__main__':
                 digitalWrite(ledR,0)
                 digitalWrite(ledG,1)
                 digitalWrite(ledB,0)
-        time.sleep(0.2)
+        time.sleep(1)
