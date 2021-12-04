@@ -25,10 +25,10 @@ def ledR_callback(client, userdata, message):
     if manual_control_mode:
         m = str(message.payload, "utf-8")
         print("ledR_callback: " + message.topic + " " + "\"" + m + "\"")
-        if m == "LED_ON":
+        if m == "on":
             digitalWrite(ledR,1)		# Send HIGH to switch on LED
             print ("LED ON!")
-        elif m == "LED_OFF":
+        elif m == "off":
             digitalWrite(ledR,0)		# Send LOW to switch off LED
             print ("LED OFF!")
 
@@ -37,10 +37,10 @@ def ledG_callback(client, userdata, message):
     if manual_control_mode:
         m = str(message.payload, "utf-8")
         print("ledG_callback: " + message.topic + " " + "\"" + m + "\"")
-        if m == "LED_ON":
+        if m == "on":
             digitalWrite(ledG,1)		# Send HIGH to switch on LED
             print ("LED ON!")
-        elif m == "LED_OFF":
+        elif m == "off":
             digitalWrite(ledG,0)		# Send LOW to switch off LED
             print ("LED OFF!")
 
@@ -49,14 +49,14 @@ def ledB_callback(client, userdata, message):
     if manual_control_mode:
         m = str(message.payload, "utf-8")
         print("ledB_callback: " + message.topic + " " + "\"" + m + "\"")
-        if m == "LED_ON":
+        if m == "on":
             digitalWrite(ledB,1)		# Send HIGH to switch on LED
             print ("LED ON!")
-        elif m == "LED_OFF":
+        elif m == "off":
             digitalWrite(ledB,0)		# Send LOW to switch off LED
             print ("LED OFF!")
 
-def manual_callback(client, userdata, message):
+def manual_mode_callback(client, userdata, message):
     m = str(message.payload, "utf-8")
     print("manual_mode_callback: " + message.topic + " " + "\"" + m + "\"")
     if m == "true":

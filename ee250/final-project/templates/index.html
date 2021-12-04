@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <style>
+        html { height: 100%; }
+        body { min-height: 100%; margin: 0; display: flex; justify-content: center; align-items: center; }
+        .button { 
+            position: relative;
+        border-radius: 50%; 
+        width: 200px;
+        height: 200px;
+        border: none;
+        color: white;
+        font-family: Avenir, Arial, sans-serif;
+        font-weight: 900;
+        font-size: 2.5rem;
+        text-shadow: 0 3px 1px rgba(120,120,120,.8);
+        box-shadow: 0 8px 0 rgb(150,150,150), 
+            0 15px 20px rgba(0,0,0,.35);
+        text-transform: uppercase;
+        transition: .4s all ease-in;
+        outline: none; 
+        cursor: pointer;
+        text-align: center;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        /* fix for IE 11 (and IE8+, although the earlier versions are harder to address) stupidly moving the inner button text on click */
+        .pressed { 
+            padding-top: 3px;
+            transform: translateY(10px);
+            box-shadow: 0 4px 0 rgb(150,150,150),
+                0 8px 6px rgba(0,0,0,.45);
+        }
+        
+    </style>
+    <body>
+        <form action="/submit" method="POST" id="myForm">
+            <input class="button" id="red" type="text" name="red" value="on">
+            <input class="button" id="green" type="text" name="green" value="on">
+            <input class="button" id="blue" type="text" name="blue" value="on">
+            <input type="submit" name="submit">
+        </form>
+        <script>
+            
+            var redButton = document.getElementById("red");
+            var greenButton = document.getElementById("green");
+            var blueButton = document.getElementById("blue");
+            window.onload = function() {
+                redButton.style.background = "red";
+                greenButton.style.background = "green";
+                blueButton.style.background = "blue";
+            };
+
+            function unpress() { redButton.classList.remove("pressed"); }
+
+            function toggleRedButton() {
+                if (redButton.classList.contains("pressed")) {
+                    redButton.classList.remove("pressed");
+                    redButton.style.background = "red";
+                    redButton.value = "on";
+                } else {
+                    redButton.classList.add("pressed"); 
+                    redButton.style.background = "rgb(120,0,0)";
+                    redButton.value = "off";
+                }
+            }
+            function toggleGreenButton() {
+                if (greenButton.classList.contains("pressed")) {
+                    greenButton.classList.remove("pressed");
+                    greenButton.style.background = "green";
+                    greenButton.value = "on";
+                } else {
+                    greenButton.classList.add("pressed"); 
+                    greenButton.style.background = "rgb(0,90,0)";
+                    greenButton.value = "off";
+                }
+            }
+            function toggleBlueButton() {
+                if (blueButton.classList.contains("pressed")) {
+                    blueButton.classList.remove("pressed");
+                    blueButton.style.background = "blue";
+                    blueButton.value = "on";
+                } else {
+                    blueButton.classList.add("pressed"); 
+                    blueButton.style.background = "rgb(0,0,130)";
+                    blueButton.value = "off";
+                }
+            }
+            redButton.addEventListener('click', function(event) { toggleRedButton(); });
+            greenButton.addEventListener('click', function(event) { toggleGreenButton();});
+            blueButton.addEventListener('click', function(event) { toggleBlueButton();});
+        </script>
+    </body>
+</html>
