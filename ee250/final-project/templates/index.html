@@ -3,30 +3,31 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
+        <script src='https://cdn.plot.ly/plotly-2.6.3.min.js'></script>
     </head>
     <style>
         html { height: 100%; }
         body { min-height: 100%; margin: 0; display: flex; justify-content: center; align-items: center; }
         .button { 
             position: relative;
-        border-radius: 50%; 
-        width: 200px;
-        height: 200px;
-        border: none;
-        color: white;
-        font-family: Avenir, Arial, sans-serif;
-        font-weight: 900;
-        font-size: 2.5rem;
-        text-shadow: 0 3px 1px rgba(120,120,120,.8);
-        box-shadow: 0 8px 0 rgb(150,150,150), 
-            0 15px 20px rgba(0,0,0,.35);
-        text-transform: uppercase;
-        transition: .4s all ease-in;
-        outline: none; 
-        cursor: pointer;
-        text-align: center;
-        -webkit-user-select: none;
-        -webkit-tap-highlight-color: rgba(0,0,0,0);
+            border-radius: 50%; 
+            width: 200px;
+            height: 200px;
+            border: none;
+            color: white;
+            font-family: Avenir, Arial, sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            text-shadow: 0 3px 1px rgba(120,120,120,.8);
+            box-shadow: 0 8px 0 rgb(150,150,150), 
+                0 15px 20px rgba(0,0,0,.35);
+            text-transform: uppercase;
+            transition: .4s all ease-in;
+            outline: none; 
+            cursor: pointer;
+            text-align: center;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
         }
 
         /* fix for IE 11 (and IE8+, although the earlier versions are harder to address) stupidly moving the inner button text on click */
@@ -43,10 +44,24 @@
             <input class="button" id="red" type="text" name="red" value="on">
             <input class="button" id="green" type="text" name="green" value="on">
             <input class="button" id="blue" type="text" name="blue" value="on">
-            <input type="submit" name="submit">
-        </form>
+            <input type="checkbox" name="manual" value="true">
+            <input type="submit" name="publish">
+        </form><br>
+        <div id='myDiv' style="position: absolute; top: 75%;"></div>
         <script>
-            
+            var data = [
+                {
+                    domain: { x: [0, 1], y: [0, 1] },
+                    value: 600,
+                    title: { text: "Loudness" },
+                    type: "indicator",
+                    mode: "gauge+number"
+                }
+            ];
+
+            var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+            Plotly.newPlot('myDiv', data, layout);
+
             var redButton = document.getElementById("red");
             var greenButton = document.getElementById("green");
             var blueButton = document.getElementById("blue");

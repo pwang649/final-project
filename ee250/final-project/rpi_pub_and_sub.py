@@ -90,13 +90,25 @@ if __name__ == '__main__':
     client.on_connect = on_connect
     client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
     client.loop_start()
-
+    digitalWrite(ledR,1)
+    digitalWrite(ledG,1)
+    digitalWrite(ledB,1)
     while True:
-        digitalWrite(ledR,1)
-        digitalWrite(ledG,1)
-        digitalWrite(ledB,1)
         soundValue = analogRead(soundSensor)
         print(soundValue)
         # publish the ultrasonic reading
         client.publish("MONIPET/soundSensor", soundValue)
+        if not manual_control_mode:
+            if soundValue > 400:
+                digitalWrite(ledR,1)
+                digitalWrite(ledG,0)
+                digitalWrite(ledB,0)
+            elif soundValue > 200:
+                digitalWrite(ledR,0)
+                digitalWrite(ledG,0)
+                digitalWrite(ledB,1):
+            else:
+                digitalWrite(ledR,o)
+                digitalWrite(ledG,1)
+                digitalWrite(ledB,0)
         time.sleep(1)
