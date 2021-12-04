@@ -18,22 +18,19 @@ def submit():
             client.publish("MONIPET/manual", "true")
         else:
             client.publish("MONIPET/manual", "false")
-        print(request.form)
         r = request.form["red"]
         b = request.form["blue"]
         g = request.form["green"]
         client.publish("MONIPET/ledR", r)
         client.publish("MONIPET/ledG", g)
         client.publish("MONIPET/ledB", b)
-        print(r, b, g)
-        return render_template("index.html")
     return redirect(url_for('home'))
     
 def custom_callback(client, userdata, message):
     # prints the ultrasonic ranger value 
     print("VM: " + str(message.payload, "utf-8"))
     global soundValue
-    soundValue = int(str(message.payload, "utf-8"))
+    soundValue = int(float(str(message.payload, "utf-8")))
    
     
 def on_connect(client, userdata, flags, rc):
