@@ -100,14 +100,12 @@ if __name__ == '__main__':
         deck.append(soundValue)
         avg = sum(deck)/5
         print(avg)
-        # publish the ultrasonic reading
-        client.publish("MONIPET/soundSensor", avg)
         if not manual_control_mode:
             if soundValue > 300:
                 digitalWrite(ledR,1)
                 digitalWrite(ledG,0)
                 digitalWrite(ledB,0)
-            elif soundValue > 150:
+            elif soundValue > 200:
                 digitalWrite(ledR,0)
                 digitalWrite(ledG,0)
                 digitalWrite(ledB,1)
@@ -115,4 +113,6 @@ if __name__ == '__main__':
                 digitalWrite(ledR,0)
                 digitalWrite(ledG,1)
                 digitalWrite(ledB,0)
-        time.sleep(1)
+        # publish the sound sensor reading
+        client.publish("MONIPET/soundSensor", avg)
+        time.sleep(0.75)
